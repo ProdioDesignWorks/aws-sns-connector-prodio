@@ -36,9 +36,12 @@ const convertObjectToMessageAttributes = input => {
 };
 
 module.exports = (message, opts) => {
+	const AWS_REGION = process.env.AWS_REGION || opts.region;
+	const AWS_ACCOUNT_ID = process.env.AWS_ACCOUNT_ID || opts.accountId;
+
 	opts = Object.assign({
-		region: process.env.AWS_REGION,
-		accountId: process.env.AWS_ACCOUNT_ID,
+		region: AWS_REGION,
+		accountId: AWS_ACCOUNT_ID,
 	}, opts);
 
 	if (!message) {
